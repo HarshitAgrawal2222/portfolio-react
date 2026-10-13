@@ -1,7 +1,10 @@
 import Icons, { Ic } from "./components/Icons";
 import CodeWindow from "./components/CodeWindow";
+import SkillsJson from "./components/SkillsJson";
+import Terminal from "./components/Terminal";
+import StatusBar from "./components/StatusBar";
 import { useTheme, useReveal } from "./hooks";
-import { projects, inProgress, stats, jobs, skills, awards } from "./data";
+import { projects, inProgress, stats, jobs, awards } from "./data";
 
 const NAV = [["Home", "#home", true], ["Projects", "#projects"], ["About", "#about"], ["Experience", "#experience", true], ["Contact", "#contact"]];
 const Chip = ({ icon, children }) => <span><Ic id={icon} cls="ic" />{children}</span>;
@@ -33,7 +36,6 @@ export default function App() {
   return (
     <>
       <Icons />
-      <div className="herobg" />
       <nav>
         <div className="wrap">
           <a className="logo" href="#home" aria-label="Home">H<b>A</b></a>
@@ -49,6 +51,7 @@ export default function App() {
 
       <main>
         <div className="wrap hero" id="home">
+          <div className="sym" aria-hidden="true"><span>{"{ }"}</span><span>&lt;/&gt;</span><span>=&gt;</span><span>[ ]</span><span>&amp;&amp;</span><span>#!</span></div>
           <div>
             <span className="pill">OPEN TO OPPORTUNITIES</span>
             <h1>Hi, I’m <em>Harshit.</em><br />I build thoughtful digital experiences.</h1>
@@ -86,6 +89,7 @@ export default function App() {
 
         <section id="experience"><div className="wrap rv">
           <div className="eb">Experience</div><h2>Where I’ve worked, led and studied</h2>
+          <div className="gl">$ git log --oneline</div>
           <div className="tl">
             {jobs.map((j) => (
               <div className="job" key={j.title}>
@@ -96,12 +100,18 @@ export default function App() {
           </div>
         </div></section>
 
-        <section><div className="wrap rv">
+        <section id="skills"><div className="wrap rv">
           <div className="eb">Skills</div><h2>Tools I work with</h2>
-          <div className="sk">{skills.map(([g, items]) => <div key={g}><h3>{g}</h3><Tags items={items} /></div>)}</div>
+          <SkillsJson />
         </div></section>
 
-        <section><div className="wrap rv">
+        <section id="terminal"><div className="wrap rv">
+          <div className="eb">Interactive</div><h2>Ask my terminal</h2>
+          <p className="lead">Type a command and press Enter, or tap one below.</p>
+          <Terminal onTheme={toggleTheme} />
+        </div></section>
+
+        <section id="awards"><div className="wrap rv">
           <div className="eb">Recognition</div><h2>Awards &amp; achievements</h2>
           <div className="aw">{awards.map(([t, d]) => <div key={t}><b>{t}</b><span>{d}</span></div>)}</div>
         </div></section>
@@ -119,6 +129,7 @@ export default function App() {
         </div>
       </div>
       <footer>© 2026 Harshit Agrawal · Building for a better tomorrow</footer>
+      <StatusBar />
     </>
   );
 }

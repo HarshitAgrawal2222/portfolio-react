@@ -53,3 +53,5 @@ export const awards = [
   ["Finalist, Vigyaan National Science Exhibition", "Among 100+ projects"],
   ["400+ DSA problems on LeetCode", "leetcode.com/u/agrawalharshit2003"],
 ];
+
+export const skillKeys = ["languages", "web", "backend", "databases", "cloud", "coreCS", "tools", "aiAssisted"];
